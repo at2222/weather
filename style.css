@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+}
+
+.main {
+    margin: 0 auto;
+    border: 1px solid red;
+    color: red;
+    width: 424px;
+    height: 600px;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+a {
+    color: violet;
+}
+
+.hot {
+    margin: 0 auto;
+    border: 1px solid red;
+    width: 424px;
+    height: 600px;
+    padding: 15px;
+    color: red;
+    font-size: 18px;
+    font-weight: 600;
+    background-image: url(images/hot.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.cold {
+    margin: 0 auto;
+    border: 1px solid red;
+    color: red;
+    font-size: 18px;
+    font-weight: 600;
+    width: 424px;
+    height: 600px;
+    padding: 15px;
+    background-image: url(images/cold.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз погоди</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        Привіт, введіть назву міста, та дізнайтесь погоду <br>
+        <form name="cityForm">
+            <label>Місто</label>
+                <input type="text" name="city" id="cityForm">
+                <!-- <input type="submit" value="Дізнатись погоду"> -->
+                <a href="#" id="submitButton">Дізнатись погоду</a>
+            </label>
+        </form>
+        <br>
+        <div id="output"></div>
+    </div>
+    
+    <script>
+        const url="https://api.openweathermap.org/data/2.5/weather?q=";
+        const key="&APPID=87f28db9dd0ab8d5f8a527a469b84de2&lang=ua&units=metric"
+        let form = document.forms.cityForm;
+        let output = document.querySelector("#output");
+        let main = document.querySelector(".main");
+        let button=document.querySelector("#submitButton");
+             
+
+        function getWeather() {
+            cityValue=form.city.value;
+            sendInfo=url + cityValue + key;
+            fetch(sendInfo)
+                    .then(response => response.json()) 
+                            .then(json => {
+                                if (json.main.temp>0) {
+                                    
+                                    main.className = "hot";  
+                                }
+                                else {
+                                    main.className = "cold";   
+                                }
+                                output.innerHTML = "";
+                                output.innerHTML += "Загалом - " + json.weather[0].description;
+                                output.innerHTML += "<br>Температура, С - " + json.main.feels_like;
+                                output.innerHTML += "<br>Температура відчувається, С- " + json.main.temp;
+                                output.innerHTML += "<br>Швидкість вітру, м/с - " + json.wind.speed;
+                                //output.innerHTML += "<br>completed: " + json.cod;                        
+                    });
+        }
+
+        button.addEventListener("click", function () {
+        if (form.city.value<2) {
+            alert ("Введіть інше заначення!");
+            document.getElementById("cityForm").value = "";
+        }
+        
+        else {
+                cityValue=form.city.value;
+                sendInfo=url + cityValue + key;
+                let promise = fetch(sendInfo);
+
+                promise
+                .then(response => {
+                    if (response.ok) { 
+                        getWeather();
+                    }
+                    else {
+                        alert("Не знаходимо, введіть інше значення");
+                        document.getElementById("cityForm").value = "";
+                    }
+                })
+            }
+        });
+       
+        document.getElementById("cityForm").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+               if (form.city.value<2) {
+                    alert ("Введіть інше заначення!");
+                    document.getElementById("cityForm").value = "";
+                }
+                
+                else {
+                cityValue=form.city.value;
+                sendInfo=url + cityValue + key;
+                console.log(sendInfo);
+                let promise = fetch(sendInfo);
+
+                    promise
+                    .then(response => {
+                        if (response.ok) { 
+                            getWeather();
+                        }
+                        else {
+                            alert("Не знаходимо, введіть інше значення");
+                            document.getElementById("cityForm").value = "";
+                        }
+                    })
+                alert("Work");
+                }
+            }    
+        });
+        
+       
+    </script>
+</body>
+</html>
