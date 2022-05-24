@@ -12,7 +12,7 @@
         Привіт, введіть назву міста, та дізнайтесь погоду <br>
         <form name="cityForm">
             <label>Місто</label>
-                <input type="text" name="city" id="cityForm">
+                <input type="text" name="city" id="cityFormInput">
                 <!-- <input type="submit" value="Дізнатись погоду"> -->
                 <a href="#" id="submitButton">Дізнатись погоду</a>
             </label>
@@ -44,10 +44,10 @@
                                     main.className = "cold";   
                                 }
                                 output.innerHTML = "";
-                                output.innerHTML += "Загалом - " + json.weather[0].description;
-                                output.innerHTML += "<br>Температура, С - " + json.main.feels_like;
-                                output.innerHTML += "<br>Температура відчувається, С- " + json.main.temp;
-                                output.innerHTML += "<br>Швидкість вітру, м/с - " + json.wind.speed;
+                                output.innerHTML += "Загалом -> " + json.weather[0].description;
+                                output.innerHTML += "<br>Температура, С -> " + json.main.feels_like;
+                                output.innerHTML += "<br>Температура відчувається, С-> " + json.main.temp;
+                                output.innerHTML += "<br>Швидкість вітру, м/с -> " + json.wind.speed;
                                 //output.innerHTML += "<br>completed: " + json.cod;                        
                     });
         }
@@ -76,7 +76,7 @@
             }
         });
        
-        document.getElementById("cityForm").addEventListener("keypress", function(event) {
+        document.getElementById("cityFormInput").addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
                if (form.city.value<2) {
                     alert ("Введіть інше заначення!");
@@ -84,14 +84,17 @@
                 }
                 
                 else {
+                    event.preventDefault();
+                    
                     cityValue=form.city.value;
                     sendInfo=url + cityValue + key;
-                    console.log(sendInfo);
+                    
                     let promise = fetch(sendInfo);
 
                         promise
                         .then(response => {
                             if (response.ok) { 
+                                console.log(sendInfo);
                                 getWeather();
                             }
                             else {
@@ -99,7 +102,7 @@
                                 document.getElementById("cityForm").value = "";
                             }
                         })
-                    alert("Work");
+                    
                 }
             }    
         });
