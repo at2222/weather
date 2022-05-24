@@ -23,7 +23,7 @@ a {
     width: 424px;
     height: 600px;
     padding: 15px;
-    color: red;
+    color: darkblue;
     font-size: 18px;
     font-weight: 600;
     background-image: url(images/hot.jpg);
@@ -34,7 +34,7 @@ a {
 .cold {
     margin: 0 auto;
     border: 1px solid red;
-    color: red;
+    color: darkblue;
     font-size: 18px;
     font-weight: 600;
     width: 424px;

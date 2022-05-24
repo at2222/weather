@@ -20,7 +20,7 @@
         <br>
         <div id="output"></div>
     </div>
-    
+
     <script>
         const url="https://api.openweathermap.org/data/2.5/weather?q=";
         const key="&APPID=87f28db9dd0ab8d5f8a527a469b84de2&lang=ua&units=metric"
@@ -84,22 +84,22 @@
                 }
                 
                 else {
-                cityValue=form.city.value;
-                sendInfo=url + cityValue + key;
-                console.log(sendInfo);
-                let promise = fetch(sendInfo);
+                    cityValue=form.city.value;
+                    sendInfo=url + cityValue + key;
+                    console.log(sendInfo);
+                    let promise = fetch(sendInfo);
 
-                    promise
-                    .then(response => {
-                        if (response.ok) { 
-                            getWeather();
-                        }
-                        else {
-                            alert("Не знаходимо, введіть інше значення");
-                            document.getElementById("cityForm").value = "";
-                        }
-                    })
-                alert("Work");
+                        promise
+                        .then(response => {
+                            if (response.ok) { 
+                                getWeather();
+                            }
+                            else {
+                                alert("Не знаходимо, введіть інше значення");
+                                document.getElementById("cityForm").value = "";
+                            }
+                        })
+                    alert("Work");
                 }
             }    
         });
